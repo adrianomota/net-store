@@ -13,8 +13,8 @@ jobs:
       PATH_TEST_PROJECT: ./
 
   steps:
-    - name: Setup test in the .NET Core project
     - uses: actions/checkout@v3
+    - name: Setup test in the .NET Core project
     - uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.302
@@ -27,8 +27,8 @@ jobs:
       #PATH_WEBAPP_AZURE_PROJECT:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup build in the .NET Core project
       - uses: actions/checkout@v3
+      - name: Setup build in the .NET Core project
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 7.0.302
