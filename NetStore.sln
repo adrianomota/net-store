@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D09F4BC5-148B-49F1-876D-02962DAFF314}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netstore.Tests", "tests\Netstore.Tests\Netstore.Tests.csproj", "{1A4A5A0F-07AB-4FEB-A86D-DFF2C76D6FD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{62CDAF6B-B154-435B-9BB5-884C1B23C95C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{4D38FBFA-6902-421A-B1BB-2BAAAFDCB6EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetStore.Core", "src\Core\NetStore.Core\NetStore.Core.csproj", "{E10E3F3C-A43E-46C7-BACB-BEF9588C9EF2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{C7751440-789D-4B6C-8B28-472B09C3332F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetStore.Catalog.Application", "src\Catalog\NetStore.Catalog.Application\NetStore.Catalog.Application.csproj", "{A457AA4C-9D44-48C6-87A9-0556F90EB4C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetStore.Catalog.Domain", "src\Catalog\NetStore.Catalog.Domain\NetStore.Catalog.Domain.csproj", "{BC281DDD-4450-46FB-A19D-E1E5503CB747}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetStore.Catalog.Infrastructure", "src\Catalog\NetStore.Catalog.Infrastructure\NetStore.Catalog.Infrastructure.csproj", "{6AD1C434-41B5-4A52-AAAB-A38AD65E5764}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A4A5A0F-07AB-4FEB-A86D-DFF2C76D6FD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A4A5A0F-07AB-4FEB-A86D-DFF2C76D6FD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A4A5A0F-07AB-4FEB-A86D-DFF2C76D6FD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A4A5A0F-07AB-4FEB-A86D-DFF2C76D6FD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E10E3F3C-A43E-46C7-BACB-BEF9588C9EF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E10E3F3C-A43E-46C7-BACB-BEF9588C9EF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E10E3F3C-A43E-46C7-BACB-BEF9588C9EF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E10E3F3C-A43E-46C7-BACB-BEF9588C9EF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A457AA4C-9D44-48C6-87A9-0556F90EB4C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A457AA4C-9D44-48C6-87A9-0556F90EB4C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A457AA4C-9D44-48C6-87A9-0556F90EB4C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A457AA4C-9D44-48C6-87A9-0556F90EB4C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC281DDD-4450-46FB-A19D-E1E5503CB747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC281DDD-4450-46FB-A19D-E1E5503CB747}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC281DDD-4450-46FB-A19D-E1E5503CB747}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC281DDD-4450-46FB-A19D-E1E5503CB747}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AD1C434-41B5-4A52-AAAB-A38AD65E5764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AD1C434-41B5-4A52-AAAB-A38AD65E5764}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AD1C434-41B5-4A52-AAAB-A38AD65E5764}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AD1C434-41B5-4A52-AAAB-A38AD65E5764}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1A4A5A0F-07AB-4FEB-A86D-DFF2C76D6FD7} = {D09F4BC5-148B-49F1-876D-02962DAFF314}
+		{4D38FBFA-6902-421A-B1BB-2BAAAFDCB6EA} = {62CDAF6B-B154-435B-9BB5-884C1B23C95C}
+		{E10E3F3C-A43E-46C7-BACB-BEF9588C9EF2} = {4D38FBFA-6902-421A-B1BB-2BAAAFDCB6EA}
+		{C7751440-789D-4B6C-8B28-472B09C3332F} = {62CDAF6B-B154-435B-9BB5-884C1B23C95C}
+		{A457AA4C-9D44-48C6-87A9-0556F90EB4C2} = {C7751440-789D-4B6C-8B28-472B09C3332F}
+		{BC281DDD-4450-46FB-A19D-E1E5503CB747} = {C7751440-789D-4B6C-8B28-472B09C3332F}
+		{6AD1C434-41B5-4A52-AAAB-A38AD65E5764} = {C7751440-789D-4B6C-8B28-472B09C3332F}
+	EndGlobalSection
+EndGlobal
