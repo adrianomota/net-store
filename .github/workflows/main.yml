@@ -14,8 +14,11 @@ jobs:
 
   steps:
     - uses: actions/checkout@v3
-    - name: Setup test in the .NET Core project
-    - uses: actions/setup-dotnet@v3
+    - name: List dotnet-core versions installed
+    - run: dotnet --list-sdks
+
+    - name: Setup build in the .NET Core project
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.302
     - name: Running tests
@@ -28,8 +31,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: List dotnet-core versions installed
+      - run: dotnet --list-sdks
+
       - name: Setup build in the .NET Core project
-      - uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 7.0.302
       - name: Running tests
