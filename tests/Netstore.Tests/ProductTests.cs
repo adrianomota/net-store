@@ -24,7 +24,7 @@ public class ProductTests
     public void Whan_i_do_not_have_valid_product_params_then_return_error()
     {
          var product = _productFixture.GetProduct();
-         product.ChangeName(string.Empty);
+         product?.ChangeName(string.Empty);
          product?.Validate();
          Assert.False(product?.IsValid());
     }
