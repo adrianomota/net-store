@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  build-tests-deployment:
+  build:
     env:
       CAMINHO_PROJETO_TESTES: ./
       CAMINHO_PROJETO_WEBAPP: ./
@@ -28,6 +28,25 @@ jobs:
 
       - name: Build com o utilitario dotnet
         run: dotnet build ${{ env.CAMINHO_PROJETO_WEBAPP }} --configuration Release
+
+  tests:
+    env:
+      CAMINHO_PROJETO_TESTES: ./
+      CAMINHO_PROJETO_WEBAPP: ./
+      NOME_WEBAPP_AZURE: todoapi
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Listar versões do .NET pré-instaladas
+        run: dotnet --list-sdks
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.302
 
       - name: Executar testes automatizados
         run: dotnet test ${{ env.CAMINHO_PROJETO_TESTES }} --verbosity minimal
