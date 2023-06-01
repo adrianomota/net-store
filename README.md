@@ -1,4 +1,4 @@
-![NetStore](https://github.com/adrianomota/net_store/actions/workflows/main.yml/badge.svg)
+![NetStore](https://github.com/adrianomota/net-store/actions/workflows/main.yml/badge.svg)
 
 To start the .net core server:
 
