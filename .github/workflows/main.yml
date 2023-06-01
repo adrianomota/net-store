@@ -7,75 +7,100 @@ on:
     branches: [main]
 
 jobs:
-  coverage:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        dotnet-version: 7.0.302
+  build-tests-deployment:
     env:
-      PATH_TEST_PROJECT: ./
+      CAMINHO_PROJETO_TESTES: ./
+      CAMINHO_PROJETO_WEBAPP: ./
+      NOME_WEBAPP_AZURE: todoapi
+
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
-      - name: Setup dotnet
+
+      - name: Listar versões do .NET pré-instaladas
+        run: dotnet --list-sdks
+
+      - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: ${{ matrix.dotnet-version }}
-      - name: Running tests
-      - run: dotnet test ${{ env.PATH_TEST_PROJECT }} --verbosity minimal
+          dotnet-version: 7.0.302
 
-  # build:
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       dotnet-version: 7.0.302
-  #   env:
-  #     PATH_WEBAPP_PROJECT: ./
-  #     #PATH_WEBAPP_AZURE_PROJECT:
-  #   steps:
-  #     - uses: actions/checkout@v2
+      - name: Build com o utilitario dotnet
+        run: dotnet build ${{ env.CAMINHO_PROJETO_WEBAPP }} --configuration Release
 
-  #     - name: List dotnet-core versions installed
-  #     - run: dotnet --list-sdks
+      - name: Executar testes automatizados
+        run: dotnet test ${{ env.CAMINHO_PROJETO_TESTES }} --verbosity minimal
+# jobs:
+#   coverage:
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         dotnet-version: 7.0.302
+#     env:
+#       PATH_TEST_PROJECT: ./
 
-  #     - name: Setup build in the .NET Core project
-  #       uses: actions/setup-dotnet@v1
-  #       with:
-  #         dotnet-version: ${{ matrix.dotnet-version }}
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: Setup dotnet
+#         uses: actions/setup-dotnet@v3
+#         with:
+#           dotnet-version: ${{ matrix.dotnet-version }}
+#       - name: Running tests
+#       - run: dotnet test ${{ env.PATH_TEST_PROJECT }} --verbosity minimal
 
-  #     - name: Running tests
-  #     - run: dotnet test ${{ env.PATH_TEST_PROJECT }} --verbosity minimal
-  # deploy:
-  #   name: Deploy Azure
-  #   needs: [coverage, build]
+# build:
+#   runs-on: ubuntu-latest
+#   strategy:
+#     matrix:
+#       dotnet-version: 7.0.302
+#   env:
+#     PATH_WEBAPP_PROJECT: ./
+#     #PATH_WEBAPP_AZURE_PROJECT:
+#   steps:
+#     - uses: actions/checkout@v2
 
-  #   runs-on: ubuntu-lates
-  # - name: Publish com o utilitario dotnet
-  #   run: dotnet publish ${{ env.CAMINHO_PROJETO_WEBAPP }} -c Release -o app
+#     - name: List dotnet-core versions installed
+#     - run: dotnet --list-sdks
 
-  # - name: Login no Azure
-  #   uses: Azure/login@v1.1
-  #   with:
-  #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+#     - name: Setup build in the .NET Core project
+#       uses: actions/setup-dotnet@v1
+#       with:
+#         dotnet-version: ${{ matrix.dotnet-version }}
 
-  # - name: Deployment no Azure App Service
-  #   uses: Azure/webapps-deploy@v2
-  #   with:
-  #     app-name: ${{ env.NOME_WEBAPP_AZURE }}
-  #     package: "./app"
+#     - name: Running tests
+#     - run: dotnet test ${{ env.PATH_TEST_PROJECT }} --verbosity minimal
+# deploy:
+#   name: Deploy Azure
+#   needs: [coverage, build]
 
-  # - name: Notificação de sucesso na execução
-  #   if: success()
-  #   shell: pwsh
-  #   run: |
-  #     $Execucao = '{ "workflow": "' + ${env:GITHUB_WORKFLOW} + '", "numExecucao": ' + ${env:GITHUB_RUN_NUMBER} + ' }'
-  #     Write-Host $Execucao
-  #     Invoke-RestMethod -Uri "${{ secrets.URL_LOGIC_APP_SUCESSO }}" -Method POST -ContentType "application/json" -Body $Execucao
+#   runs-on: ubuntu-lates
+# - name: Publish com o utilitario dotnet
+#   run: dotnet publish ${{ env.CAMINHO_PROJETO_WEBAPP }} -c Release -o app
 
-  # - name: Notificação de erro na execução
-  #   if: failure()
-  #   shell: pwsh
-  #   run: |
-  #     $Execucao = '{ "workflow": "' + ${env:GITHUB_WORKFLOW} + '", "numExecucao": ' + ${env:GITHUB_RUN_NUMBER} + ' }'
-  #     Write-Host $Execucao
-  #     Invoke-RestMethod -Uri "${{ secrets.URL_LOGIC_APP_FALHA }}" -Method POST -ContentType "application/json" -Body $Execucao
+# - name: Login no Azure
+#   uses: Azure/login@v1.1
+#   with:
+#     creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+# - name: Deployment no Azure App Service
+#   uses: Azure/webapps-deploy@v2
+#   with:
+#     app-name: ${{ env.NOME_WEBAPP_AZURE }}
+#     package: "./app"
+
+# - name: Notificação de sucesso na execução
+#   if: success()
+#   shell: pwsh
+#   run: |
+#     $Execucao = '{ "workflow": "' + ${env:GITHUB_WORKFLOW} + '", "numExecucao": ' + ${env:GITHUB_RUN_NUMBER} + ' }'
+#     Write-Host $Execucao
+#     Invoke-RestMethod -Uri "${{ secrets.URL_LOGIC_APP_SUCESSO }}" -Method POST -ContentType "application/json" -Body $Execucao
+
+# - name: Notificação de erro na execução
+#   if: failure()
+#   shell: pwsh
+#   run: |
+#     $Execucao = '{ "workflow": "' + ${env:GITHUB_WORKFLOW} + '", "numExecucao": ' + ${env:GITHUB_RUN_NUMBER} + ' }'
+#     Write-Host $Execucao
+#     Invoke-RestMethod -Uri "${{ secrets.URL_LOGIC_APP_FALHA }}" -Method POST -ContentType "application/json" -Body $Execucao
