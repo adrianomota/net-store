@@ -1,12 +1,11 @@
-using Bogus;
-using NetStore.Catalog.Domain;
-
 namespace Netstore.Tests.Support.Fixture;
 
+using Bogus;
+using NetStore.Catalog.Domain;
+using NetStore.Catalog.Domain.ValueObjects;
 public class ProductFixture : IDisposable
 {
     public ProductFixture() {}
-
     public IEnumerable<Product> GetProducts()
     {
         var products = new List<Product>();
@@ -19,6 +18,8 @@ public class ProductFixture : IDisposable
         var products = new Faker<Product>()
             .CustomInstantiator(p => new Product(
                 name: p.Commerce.ProductName(),
+                price: decimal.Parse(p.Commerce.Price(min: 1, max: 9999999, decimals: 2)),
+                dimensions: new Dimensions(height:2,width:2,depth:3),
                 active: active
             ));
         
