@@ -11,7 +11,7 @@ public class Category : Entity
     }
 
     public string Name { get; private set; }
-
+    public ICollection<Product> Products { get; set; }
     public void ChangeName(string value) => Name = value;
 
     public override bool IsValid()

@@ -20,6 +20,7 @@ public class ProductFixture : IDisposable
                 name: p.Commerce.ProductName(),
                 price: decimal.Parse(p.Commerce.Price(min: 1, max: 9999999, decimals: 2)),
                 dimensions: new Dimensions(height:2,width:2,depth:3),
+                categoryId: Guid.NewGuid(),
                 active: active
             ));
         
