@@ -17,11 +17,11 @@ public class ProductRepository : IProductRepository
         => await _context.Products.AddAsync(product);
     public async Task Create(Category category)
         => await _context.Categories.AddAsync(category);
-    public async Task<IEnumerable<Product>> GetAll(int page, int offset)
+    public async Task<IEnumerable<Product>> GetAll(int page, int pageSize)
         =>  await _context.Products
                 .AsNoTracking()
                 .Skip(page)
-                .Take(offset)
+                .Take(pageSize)
                 .ToListAsync();
     public async Task<IEnumerable<Product?>> GetByCategory(Guid? categoryId)
         =>  await _context.Products

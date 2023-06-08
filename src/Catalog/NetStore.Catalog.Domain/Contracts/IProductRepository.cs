@@ -3,7 +3,7 @@ namespace NetStore.Catalog.Domain.Contracts;
 using NetStore.Core.Data;
 public interface IProductRepository : IRepository<Product>
 {
-    Task<IEnumerable<Product>> GetAll(int page, int offset);
+    Task<IEnumerable<Product>> GetAll(int page, int pageSize);
     Task<Product?> GetById(Guid? id);
     Task<IEnumerable<Product?>> GetByCategory(Guid? categoryId);
     Task<IEnumerable<Category>> GetCategories(int page, int offset);
