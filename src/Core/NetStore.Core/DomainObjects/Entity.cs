@@ -12,8 +12,7 @@ public abstract class Entity
    public Guid Id { get; private set; }
    public DateTime CreatedAt { get; private set; }
    public DateTime UpdatedAt { get; set; }
-   public ValidationResult? ValidationResult { get; set; }
-
+   public ValidationResult? ValidationResult { get; protected set; }
    public override bool Equals(object? obj)
    {
       var compjareTo = obj as Entity;

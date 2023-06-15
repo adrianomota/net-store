@@ -1,7 +1,9 @@
 using System.Threading.Tasks;
+using FluentValidation.Results;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using NetStore.Catalog.Domain;
+using NetStore.Catalog.Domain.ValueObjects;
 using NetStore.Catalog.Infrastructure.Contracts;
 using NetStore.Core.Data;
 
@@ -24,6 +26,7 @@ public class CatalogDbContext : DbContext, IUnitOfWork
                 {
                     property.SetColumnType("varchar(100)");
                 }
+
         // modelBuilder.Ignore<Event>();
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogDbContext).Assembly);
     }

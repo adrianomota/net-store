@@ -16,6 +16,8 @@ public class ProductMap : IEntityTypeConfiguration<Product>
         .IsRequired()
         .HasColumnType("decimal(10,2)");
 
+        builder.Ignore(c => c.ValidationResult);
+
         builder.OwnsOne(c => c.Dimensions, cm =>
         {
             cm.Property(c => c.Height)
@@ -27,6 +29,8 @@ public class ProductMap : IEntityTypeConfiguration<Product>
             cm.Property(c => c.Depth)
                 .HasColumnName("Depth")
                 .HasColumnType("int");
+            
+            cm.Ignore(c => c.ValidationResult);
         });
     }
 }

@@ -13,7 +13,9 @@ public class CategoryMap : IEntityTypeConfiguration<Category>
             builder.Property(c => c.Name)
                 .IsRequired()
                 .HasColumnType("varchar(250)");
-       
+           
+            builder.Ignore(c => c.ValidationResult);
+
            // 1 : N => Categories : Produtos
             builder.HasMany(c => c.Products)
                 .WithOne(p => p.Category)
