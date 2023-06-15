@@ -1,3 +1,4 @@
+using System.Reflection;
 using NetStore.Api.Configurations;
 using NetStore.Auth.IoC;
 using NetStore.Catalog.IoC;
@@ -14,6 +15,7 @@ builder.Services.AddCatalogDependencyInjectionConfiguration(builder.Configuratio
 builder.Services.AddAuthDependencyInjectionConfiguration();
 builder.Services.AddSwaggerConfiguration();
 builder.Services.AddSwaggerGen();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
 var app = builder.Build();
 app.UseApiConfiguration(app.Environment);

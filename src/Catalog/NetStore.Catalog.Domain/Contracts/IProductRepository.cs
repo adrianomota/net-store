@@ -1,6 +1,7 @@
 namespace NetStore.Catalog.Domain.Contracts;
 
 using NetStore.Core.Data;
+
 public interface IProductRepository : IRepository<Product>
 {
     Task<IEnumerable<Product>> GetAll(int page, int pageSize);

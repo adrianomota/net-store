@@ -1,16 +1,21 @@
-namespace NetStore.Catalog.Infrastructure;
-
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using NetStore.Catalog.Domain;
+using NetStore.Catalog.Infrastructure.Contracts;
 using NetStore.Core.Data;
 
-public class CatalogContext : DbContext, IUnitOfWork
+namespace NetStore.Catalog.Infrastructure;
+
+public class CatalogDbContext : DbContext, IUnitOfWork
 {
-    public CatalogContext(DbContextOptions<CatalogContext> options)
-        :base(options) { }
-    public DbSet<Category> Categories { get; set; }
-    public DbSet<Product> Products { get; set; }
+    private readonly string _catalogConnectionString;
+    public CatalogDbContext(IOptions<DbOptions> dbOptions)
+    { 
+       _catalogConnectionString = dbOptions.Value.ConnectionString;
+    }
+    public DbSet<Category>? Categories { get; set; }
+    public DbSet<Product>? Products { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -20,9 +25,13 @@ public class CatalogContext : DbContext, IUnitOfWork
                     property.SetColumnType("varchar(100)");
                 }
         // modelBuilder.Ignore<Event>();
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogContext).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogDbContext).Assembly);
     }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(_catalogConnectionString);
+    }
     public async Task<bool> Commit()
     {
         foreach (var entry in ChangeTracker.Entries().Where(e => e.Entity.GetType().GetProperty("CreatedAt") != null))

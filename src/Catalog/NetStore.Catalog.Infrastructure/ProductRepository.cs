@@ -7,9 +7,9 @@ using NetStore.Core.Data;
 
 public class ProductRepository : IProductRepository
 {
-    private readonly CatalogContext _context;
+    private readonly CatalogDbContext _context;
     public IUnitOfWork UnitOfWork => _context;
-    public ProductRepository(CatalogContext context)
+    public ProductRepository(CatalogDbContext context)
     {
         _context = context;
     }

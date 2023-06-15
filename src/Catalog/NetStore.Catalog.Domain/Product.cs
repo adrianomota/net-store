@@ -6,6 +6,8 @@ using NetStore.Core.DomainObjects;
 
 public class Product : Entity, IAggregateRoot
 {
+    // EF
+    protected Product () { }
     public Product(string name, bool active, decimal price, Dimensions dimensions, Guid categoryId)
     {
         Name = name;

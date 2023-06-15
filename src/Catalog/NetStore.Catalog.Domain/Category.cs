@@ -5,6 +5,8 @@ using NetStore.Core.DomainObjects;
 
 public class Category : Entity
 {
+     // EF
+    protected Category () { }
     public Category(string name)
     {
         Name = name;
